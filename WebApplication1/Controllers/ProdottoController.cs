@@ -26,6 +26,7 @@ namespace WebApplication1.Controllers
 		// POST api/<controller>
 		public void Post([FromBody]string value)
 		{
+			dm.ToString();
 		}
 
 		// PUT api/<controller>/5
