@@ -58,5 +58,21 @@ namespace DraxManUC001.Models {
 
 			}
 		}
+		public void Aggiungi(Prodotto nuovo)
+		{
+			using(db= new RICHIESTEEntities()) {
+				ProdottiSet prodottiSet = new ProdottiSet{descrizione=nuovo.Descrizione,quantita=nuovo.Giacenza };
+				db.ProdottiSet.Add(prodottiSet);
+				db.SaveChanges();
+			}
+		}
+		public void Elimina(int id)
+		{
+			using(db=new RICHIESTEEntities()) {
+				ProdottiSet prodottiSet=db.ProdottiSet.Find(id);
+				db.ProdottiSet.Remove(prodottiSet);
+				db.SaveChanges();
+			}
+		}
 	}
 }

@@ -127,5 +127,15 @@ namespace WebApplication1.Controllers
 			ViewBag.MessageBox="Il carrello è stato pulito";
 			return View("Ricerca");
 		}
+		//[HttpPost]
+		//public void Aggiungi(string descrizione,int quantita)
+		//{
+		//	dm.Aggiungi(new Prodotto{Descrizione=descrizione,Giacenza=quantita});
+		//}
+		//[HttpPost]
+		//public void Elimina(int id)
+		//{
+		//	dm.Elimina(id);
+		//}
 	}
 }

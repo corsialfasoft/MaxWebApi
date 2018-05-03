@@ -24,9 +24,9 @@ namespace WebApplication1.Controllers
 		}
 
 		// POST api/<controller>
-		public void Post([FromBody]string value)
+		public void Post([FromBody]Prodotto prodotto)
 		{
-			dm.ToString();
+			dm.Aggiungi(prodotto);
 		}
 
 		// PUT api/<controller>/5
@@ -37,6 +37,7 @@ namespace WebApplication1.Controllers
 		// DELETE api/<controller>/5
 		public void Delete(int id)
 		{
+			dm.Elimina(id);
 		}
 	}
 }
