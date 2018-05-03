@@ -264,6 +264,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="WebApi\esempio.html" />
     <EntityDeploy Include="Richieste.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Richieste.Designer.cs</LastGenOutput>
