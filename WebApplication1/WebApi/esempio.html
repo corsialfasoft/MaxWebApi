@@ -32,10 +32,11 @@
                 var $form = $(this)
                 var prodotto = {};
                 var url = $form.attr("action");
-                prodotto.Descrizione = ("input[name='_descrizione']").val();
-                prodotto.Giacenza = ("input[name='Giacenza']").val();
+                prodotto.Descrizione = $form.find("input[name='_descrizione']").val();
+                prodotto.Giacenza = $form.find("input[name='Giacenza']").val();
                 var posting = $.post(url, prodotto);
                 posting.done(function (data) {
+                    ListaProdotti();
                     LoadProdotti();
                 });
             });
