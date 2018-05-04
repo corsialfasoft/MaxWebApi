@@ -27,6 +27,18 @@
                     });
             }
             LoadProdotti();
+            $("#Aggiungi").submit(function (event) {
+                event.preventDefault();
+                var $form = $(this)
+                var prodotto = {};
+                var url = $form.attr("action");
+                prodotto.Descrizione = ("input[name='_descrizione']").val();
+                prodotto.Giacenza = ("input[name='Giacenza']").val();
+                var posting = $.post(url, prodotto);
+                posting.done(function (data) {
+                    LoadProdotti();
+                });
+            });
         });
         function LoadProdotti(id) {
             $.getJSON(uri + '/' + id)
@@ -49,12 +61,12 @@
         }
         function AddProdotti() {
             $("#Prodotti").hide();
-            $("#Aggiungi").html({
-                '<div class'
-            });
+            $("#DettaglioProdotto").hide();
+            $("#Aggiungi").show();
         }
         function ListaProdotti() {
             $("#Aggiungi").hide();
+            $("#DettaglioProdotto").show();
             $("#Prodotti").show();
         }
     </script>
@@ -81,17 +93,15 @@
                 </div>
             </div>
         </div>
-        <div id="Aggiungi">
-                <form action="/api/Prodotti" id="frmNuovo" class="formStyle" method="post">
+                <form action="/api/Prodotto" id="Aggiungi" class="formStyle" method="post">
 
                     <label>Descrizione</label>
-                    <textarea class="form-control" name="_descrizione" rows="3" cols="50" maxlength="140" required="" placeholder="Inserisci qui la descrizione..."></textarea>
+                    <input type="text" class="form-control" name="_descrizione" required="" placeholder="Inserisci qui la descrizione..." />
 
                     <label>Giacenza</label>
                     <input class="form-control" type="number" name="Giacenza" placeholder="Giacenza" required="">
                     <input type="submit" class="btn btn-default" value="Aggiungi prodotto">
                 </form>
-        </div>
     </div>
 </body>
 </html>
