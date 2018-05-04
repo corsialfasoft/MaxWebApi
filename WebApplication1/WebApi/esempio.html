@@ -55,7 +55,7 @@
                         '<div class="col-md-1">' + data.Id + '</div>' +
                         '<div class="col-md-5">' + data.Descrizione + '</div>' +
                         '<div class="col-md-3">' + data.Giacenza + '</div>' +
-                        '<a onclick="DelProdotti('+data.Id +')">Elimina</a>' +
+                        '<a onclick="DelProdotti(' + data.Id + ')">Elimina</a>' +
                         '</table>' +
                         '</div>'
                     );
@@ -76,9 +76,19 @@
             $.ajax({
                 url: urlApi,
                 type: "delete"
-            }).done(function () {
-                LoadProdotti();
+            }).done(function (data) {
+                RicaricaLista();
+                ListaProdotti();
             });
+        }
+        function RicaricaLista() {
+            $('#Prodotti').empty();
+            $.getJSON(uri)
+                .done(function (data) {
+                    $.each(data, function (key, item) {
+                        $('#Prodotti').append(('<li class="list-group-item" onclick=LoadProdotti(' + item.Id + ')>' + item.Descrizione + '</li>'));
+                    });
+                });
         }
     </script>
 </head>
@@ -104,15 +114,15 @@
                 </div>
             </div>
         </div>
-                <form action="/api/Prodotto" id="Aggiungi" class="formStyle" method="post">
+        <form action="/api/Prodotto" id="Aggiungi" class="formStyle" method="post">
 
-                    <label>Descrizione</label>
-                    <input type="text" class="form-control" name="_descrizione" required="" placeholder="Inserisci qui la descrizione..." />
+            <label>Descrizione</label>
+            <input type="text" class="form-control" name="_descrizione" required="" placeholder="Inserisci qui la descrizione..." />
 
-                    <label>Giacenza</label>
-                    <input class="form-control" type="number" name="Giacenza" placeholder="Giacenza" required="">
-                    <input type="submit" class="btn btn-default" value="Aggiungi prodotto">
-                </form>
+            <label>Giacenza</label>
+            <input class="form-control" type="number" name="Giacenza" placeholder="Giacenza" required="">
+            <input type="submit" class="btn btn-default" value="Aggiungi prodotto">
+        </form>
     </div>
 </body>
 </html>
